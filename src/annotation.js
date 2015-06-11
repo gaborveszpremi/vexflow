@@ -145,7 +145,13 @@ Vex.Flow.Annotation = (function() {
       }
 
       if (this.vert_justification == Annotation.VerticalJustify.BOTTOM) {
-        y = stave.getYForBottomText(this.text_line);
+      	// <edited> by gaborveszpremi 2015-06-11
+      	var line = this.text_line;
+		if(typeof Syd !== "undefined"){
+			line += 2;  // push down lyrics (gaborveszpremi)
+		}
+	    y = stave.getYForBottomText(line);
+	    // </edited> by gaborveszpremi 2015-06-11
         if (has_stem) {
           var stem_base = (this.note.getStemDirection() === 1 ? stem_ext.baseY : stem_ext.topY);
           y = Math.max(y, stem_base + (spacing * (this.text_line + 2)));
