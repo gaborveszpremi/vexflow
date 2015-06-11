@@ -71,7 +71,8 @@ Vex.Flow.TextDynamics = (function(){
     // Preformat the dynamics text
     preFormat: function() {
       var total_width = 0;
-      this.glyphs = [];
+      this.glyphs = []; // Line added by gaborveszpremi on 2015-06-11
+      					// Without this, you can not format TextDynamics twice.
       // Iterate through each letter
       this.sequence.split('').forEach(function(letter) {
         // Get the glyph data for the letter
