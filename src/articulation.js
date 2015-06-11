@@ -169,7 +169,14 @@ Vex.Flow.Articulation = (function() {
 
       var glyph_x = start.x + this.articulation.shift_right;
       glyph_y += shiftY + this.y_shift;
-
+      
+      // <edited> by gaborveszpremi 2015-06-11
+      if (this.sydDynamics){
+      	glyph_y = Math.min(10, this.note.ys[0]);   	// Y position of dynamics signs (piano, forte etc) must depend on 
+      												// notehead position, dyn signs must be above the note.
+      }
+	  // </edited> by gaborveszpremi 2015-06-11
+	  
       L("Rendering articulation: ", this.articulation, glyph_x, glyph_y);
       Vex.Flow.renderGlyph(this.context, glyph_x, glyph_y,
                            this.render_options.font_scale, this.articulation.code);
